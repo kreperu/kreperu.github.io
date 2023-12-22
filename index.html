@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <head>
+    <base href="./">
     <style>
         body {
             background-color: aquamarine;
         }
     </style>
-    <script>
-        const ws = new WebSocket("172.0.0.1:1234")
-        ws.onerror(alert("error"))
-        ws.onopen(alert("open"))
-        ws.onmessage(function message(data) {alert(data)})
-    </script>
 </head>
 <body>
     <p>This WORKS!</p>
