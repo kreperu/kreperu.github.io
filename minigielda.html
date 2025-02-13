@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styl.css">
+  <script src="skrypt.js"></script>
+  <title>minigiełda</title>
+</head>
+<body>
+  <div id="kurs_waluty">
+    <div id="okres_czasu">
+      <h2 id="kurs_krypto">Kurs Dolara</h2>
+      <canvas id="wykresCanvas" width="800" height="400"></canvas>
+    </div>
+    <form>
+      <datalist id="select_crypto">
+        <!-- Dynamically filled via JS -->
+      </datalist>
+    </form>
+  </div>
+
+  <div id="konto_wykres">
+    <div id="wykres_konta"></div>
+    <div id="okres_czasu1">
+      <h2 id="wykres_h2">Stan Konta</h2>
+      <h2 id="ilosc_saldo">Saldo (zł):<span id="wartosc_saldo">1000</span></h2>
+      <h2 id="ilosc_krypto">Ilość Dolarów: <span id="ilosc_k">0</span></h2>
+    </div>
+  </div>
+
+  <div id="krypto_pln">
+    <h2 id="h2_1">Wartość (1 USD)</h2>
+    <input type="text" id="przeliczanie" class="dark_input" readonly>
+    <datalist id="krypto_wybierz">
+      <!-- Dynamically filled via JS -->
+    </datalist>
+
+
+      
+
+  </div>
+
+  <div id="saldo">
+
+      <div id="styl1"><button onclick="kup()">Kup</button></div>
+      <div id="styl2"><button onclick="sprzedaj()">Sprzedaj</button></div>   
+      <div id="styl3"><button onclick="kup_w()">Kup Wszystko</button></div>
+      <div id="styl4"><button onclick="sprzedaj_w()">Sprzedaj Wszystko</button></div>
+
+  </div>
+
+
+
+  <div id="stopka"><h2>Autorzy: Jakub Sowula, Gabriel Sokalla</h2></div>
+</body>
+</html>
