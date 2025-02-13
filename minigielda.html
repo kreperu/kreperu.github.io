@@ -53,5 +53,32 @@
 
 
   <div id="stopka"><h2>Autorzy: Jakub Sowula, Gabriel Sokalla</h2></div>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+     var graph = document.getElementById("kurs_krypto");
+    var xArr = [];
+    var yArr = [];
+    for(let i=0; i<25;i++){
+        xArr[i]=i;
+    }
+    var plotExists=0;
+    function shift() {
+        for(let i=24;i>0;i++){
+            yArr[i]=yArr[i-1]
+        }
+        yArr[0] = kurs_dola;
+    }
+    function display() {
+        if(plotExists==0) {
+            plotExists=1;
+            Plotly.newPlot(graph, [{x: xArr, y: yArr, mode:"lines", type:"scatter"}], {xaxis: {title:"Data"}, yaxis: {title:"Kurs}, title:"USD-PLN});
+        } else {
+            Plotly.react(graph);
+        }
+        shift();
+    }
+
+    window.setInterval(display, 2000);
+</script>
 </body>
 </html>
