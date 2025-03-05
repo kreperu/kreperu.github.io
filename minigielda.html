@@ -8,62 +8,50 @@
   <title>minigiełda</title>
 </head>
 <body>
-  <div id="kurs_waluty">
-    <div id="okres_czasu">
-      <h2 id="kurs_krypto">Kurs Dolara</h2>
-      <canvas id="wykresCanvas" width="800" height="400"></canvas>
+  <div id="main">
+    <div id="graphValueUSD">
+      <h2 class="titleBar">Kurs Dolara</h2>
+      <div id="wykresCanvas"></div>
     </div>
-    <form>
-      <datalist id="select_crypto">
-        <!-- Dynamically filled via JS -->
-      </datalist>
-    </form>
-  </div>
+    <div id="leftBlock">
 
-  <div id="konto_wykres">
-    <div id="wykres_konta"></div>
-    <div id="okres_czasu1">
-      <h2 id="wykres_h2">Stan Konta</h2>
-      <h2 id="ilosc_saldo">Saldo (zł):<span id="wartosc_saldo">1000</span></h2>
-      <h2 id="ilosc_krypto">Ilość Dolarów: <span id="ilosc_k">0</span></h2>
+      <div id="userInfo">
+        <h2 class="titleBar">Stan Konta</h2>
+        <h2 class="saldo">Saldo (zł): <span id="numSaldoPLN">1000</span></h2>
+        <h2 class="saldo">Ilość Dolarów: <span id="numSaldoUSD">0</span></h2>
+      </div>
+
+      <div id="valueUSD">
+        <h2 id="h2_1">Wartość (1 USD)</h2>
+        <input type="text" id="convertedPrice" class="dark_input" readonly>
+      </div>
+    
+
+        <div id="actionMenu">
+            <button class="userButton" onclick="kup()">Kup</button>
+            <button class="userButton" onclick="sprzedaj()">Sprzedaj</button>
+            <button class="userButton" onclick="kup_w()">Kup Wszystko</button>
+            <button class="userButton" onclick="sprzedaj_w()">Sprzedaj Wszystko</button>
+        </div>
+
+
     </div>
   </div>
 
-  <div id="krypto_pln">
-    <h2 id="h2_1">Wartość (1 USD)</h2>
-    <input type="text" id="przeliczanie" class="dark_input" readonly>
-    <datalist id="krypto_wybierz">
-      <!-- Dynamically filled via JS -->
-    </datalist>
 
 
-      
-
-  </div>
-
-  <div id="saldo">
-
-      <div id="styl1"><button onclick="kup()">Kup</button></div>
-      <div id="styl2"><button onclick="sprzedaj()">Sprzedaj</button></div>   
-      <div id="styl3"><button onclick="kup_w()">Kup Wszystko</button></div>
-      <div id="styl4"><button onclick="sprzedaj_w()">Sprzedaj Wszystko</button></div>
-
-  </div>
-
-
-
-  <div id="stopka"><h2>Autorzy: Jakub Sowula, Gabriel Sokalla</h2></div>
+  <div id="footer"><h2>Autorzy: Jakub Sowula, Gabriel Sokalla</h2></div>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 <script>
-     var graph = document.getElementById("kurs_krypto");
+     var graph = document.getElementById("wykresCanvas");
     var xArr = [];
     var yArr = [];
-    for(let i=0; i<25;i++){
+    for(let i=0; i<52;i++){
         xArr[i]=i;
     }
     var plotExists=0;
     function shift() {
-        for(let i=24;i>0;i++){
+        for(let i=51;i>0;i--){
             yArr[i]=yArr[i-1]
         }
         yArr[0] = kurs_dola;
@@ -71,14 +59,14 @@
     function display() {
         if(plotExists==0) {
             plotExists=1;
-            Plotly.newPlot(graph, [{x: xArr, y: yArr, mode:"lines", type:"scatter"}], {xaxis: {title:"Data"}, yaxis: {title:"Kurs}, title:"USD-PLN});
+            Plotly.newPlot(graph, [{x: xArr, y: yArr, mode:"lines", type:"scatter", line: {width:4}}], {xaxis: {title:"Tydzień", autorange:"reversed"}, yaxis: {title:"Kurs"}, title:"USD-PLN", paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)", font: {color: "rgb(169, 169, 169)"}, colorway: ["#c10061"]}); //#dcaa00
         } else {
-            Plotly.react(graph);
+            Plotly.redraw(graph);
         }
         shift();
     }
 
-    window.setInterval(display, 2000);
+    //window.setInterval(display, 2000);
 </script>
 </body>
 </html>

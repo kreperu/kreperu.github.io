@@ -6,76 +6,73 @@ h2,h3{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-body{
+body,html,#main{
     width: 100vw;
-     height: 100vh;
+    height: 100vh;
     margin: 0px;
 }
-#konto_wykres{
-    width: 30%;
-    height: 50%;
+
+body {
+    display: inline;
+    flex-direction: row;
 }
-#krypto_pln{
-    width: 30%;
+
+#main {
+    height: 93vh;
+}
+
+#leftBlock {
+    height: 100%;
+    width: 30vw;
+}
+
+#userInfo{
+    width: 100%;
+    height: 53%;
+}
+#valueUSD{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10%;
+    padding-left: 6%;
+    width: 100%;
     height: 10%;
 }
-#saldo{
-    width: 30%;
-    height: 37%;
-}
-#przyciski{
-    width: 30%;
-    height: 20%;
-}
-#kurs_waluty{
+#graphValueUSD{
+    display: flex;
+    flex-direction: column;
     float: right;
     width: 70%;
-    height: 97%;
+    height: 100%;
 }
-#stopka{
-    position: absolute;
-    bottom: 0%;
+#footer{
+    display: flex;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    float: left;
+    height: 50px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
-#konto_wykres, #krypto_pln, #saldo, #kurs_waluty, #stopka, #przyciski
+#userInfo, #valueUSD, #actionMenu, #graphValueUSD, #footer
 {
     background-color: rgb(30,31,34);
     border: 1px solid black;
-}
-#input_crypto{
-    position: absolute;
-    top: 10%;
-    right: 1%;
 }
 button {
     font-size: 23px;
     background-color: rgb(60,60,60);
     border: 1px solid black;
     border-radius: 5px;
-    width: 220px;
-    height: 75px;
 }
 button:hover{
     background: rgb(69, 69, 69);
     transition: 0.1s;
     cursor: pointer;
  }
- #przycisk{
-    background-color:rgb(43,45,49);
-    position: absolute;
-    top: 6.2%;
-    left: 36.96%;
-    transform: translateX(-50%);
-    width: 219px;
-    height: 40px;
-    font-size: 16px;
-    text-align: center;
-    border: 1px solid #000000;
-    border-radius: 5px;
-
-  }
   .dark_input{
     background-color: rgb(69,69,69);
     border: 1px solid black;
@@ -84,210 +81,37 @@ button:hover{
      width: 210px;
      height: 30px;
   }
-  #styl1, #styl2, #styl3, #styl4{
-    position: absolute;
+  #actionMenu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 33% 33%;
+    padding-top: auto;
+    padding-bottom: auto;
+    padding-left: 6%;
+    padding-right: 6%;
+    gap: 10% 10px;
+    height: 37%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
   }
-
-#styl1{
-    position: absolute;
-    top: 65%;
-    left: 1%;
-}
-#styl2{
-    position: absolute;
-    top: 77%;
-    left: 1%;
-}
-#styl3{
-    position: absolute;
-    top: 65%;
-    left: 250px;
-}
-#styl4{
-    position: absolute;
-    top: 77%;
-    left: 250px;
-}
-#waluta{
-    position: absolute;
-    top: 53.5%;
-    left: 140px;
-    background-color: rgb(69,69,69);
-    border: 1px solid black;
-    float: left;
-    border-radius: 5px;
-}
-#przeliczanie{
-    position: absolute;
-    top: 52%;
-    left: 285px;
-    width: 125px;
+#convertedPrice{
+    width: 30%;
     height: 50px;
+    margin-right: 6%;
 }
-
-#na{
-    position: absolute;
-    top: 53.5%;
-    left: 248px;
-    width: 50px;
-    height: 20px;
-    text-align: c;
+.saldo{
+    padding: 10% 6%;
 }
-#krypto_wybierz{
-    position: absolute;
-    top: 53.5%;
-    left: 302px;
-    width: 50px;
-    height: 20px;
+#wykresCanvas {
+    width: 100%;
+    height: 100%;
 }
-#wynik{
-    position: absolute;
-    top: 53.5%;
-    left: 355px;
-    width: 50px;
-    height: 20px;
-}
-#svg_tlo{
-    background-color: rgb(60,60,60);
-    position: absolute;
-    top: 51.1%;
-    left: 442px;
-    transform: translateX(-50%);
-    width: 65px;
-    height: 60px;
-    font-size: 16px;
-    text-align: center;
-    border: 1px solid #000000;
+.titleBar{
+    width: 1fr;
+    padding: 5px;
+    margin: 5px;
     border-radius: 5px;
-
-}
-#svg_tlo:hover{
-    background-color: rgb(69,69,69);
-}
-#svg{
-    position: absolute;
-    top: 50.6%;
-    left: 410px;
-}
-#svg:hover{
-    display: none;
-    cursor: pointer;
-}
-#wartosc_saldo{
-    position: absolute;
-    left: 120px;
-}
-#ilosc_saldo{
-    position: absolute;
-    top: 12%;
-    left: 25px;
-}
-#ilosc_krypto{
-    position: absolute;
-    top: 28%;
-    left: 24px;
-}
-#ilosc_k{
-    position: absolute;
-    left: 180px;
-}
-#okres_czasu{
-    border: 1px solid black;
-    background-color:rgb(49,51,56);
-    position: absolute;
-    border-radius: 5px;
-    top: 5px;
-    left: 525px;
-    width: 1194px;
-    height: 40px;
-}
-#czas_nazwa{
-    position: absolute;
-    top: -11px;
-    right: 180px;
-}
-#przycisk_d, #przycisk_w, #przycisk_m,
-#przycisk_y, #przycisk_all{
-    position: absolute;
-    top: 4px;
-    width: 30px;
-    height: 30px;
-}
-
-#przycisk_d{
-    position: absolute;
-    right: 145px;
-}
-#przycisk_w{
-    position: absolute;
-    right: 110px;
-}
-#przycisk_m{
-    position: absolute;
-    right: 75px;
-}
-#przycisk_y{
-    position: absolute;
-    right: 40px;
-}
-#przycisk_all{
-    position: absolute;
-    right: 5px;
-}
-#kurs_krypto{
-    position: absolute;
-    top: -15px;
-    right: 1050px;
-}
-#wykres_konta{
     border: 1px solid black;
     background-color: rgb(49,51,56);
-    position: absolute;
-    border-radius: 5px;
-    top: 5px;
-    left: 5px;
-    width: 500px;
-    height: 40px;
-}
-#czas_nazwa1{
-    position: absolute;
-    top: -4px;
-    left: 190px;
-}
-#przycisk_d1, #przycisk_w1, #przycisk_m1,
-#przycisk_y1, #przycisk_all1{
-    position: absolute;
-    top: 10px;
-    width: 30px;
-    height: 30px;
-}
-#przycisk_d1{
-    position: absolute;
-    left: 303px;
-}
-#przycisk_w1{
-    position: absolute;
-    left: 338px;
-}
-#przycisk_m1{
-    position: absolute;
-    left: 373px;
-}
-#przycisk_y1{
-    position: absolute;
-    left: 408px;
-}
-#przycisk_all1{
-    position: absolute;
-    left: 443px;
-}
-#wykres_h2{
-    position: absolute;
-    top: -10px;
-    left: 17px;
-}
-#h2_1{
-    position: absolute;
-    top: 51%;
-    left: 20px;
 }

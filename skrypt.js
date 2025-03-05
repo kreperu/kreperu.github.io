@@ -3,39 +3,19 @@ var liczba_dola = 0;
 var kurs_dola = 4.01;
 
 function updateKurs() {
-  var a = Math.floor(Math.random() * 5);
-  if (a == 0) {
-    kurs_dola -= 0.05; // mocno maleje
-  } else if (a == 1) {
-    kurs_dola -= 0.05; // lekko maleje
-  } else if (a == 2) {
-    // nie zmienia się
-  } else if (a == 3) {
-    kurs_dola += 0.05; // lekko rośnie
-  } else if (a == 4) {
-    kurs_dola += 0.05; // mocno rośnie
+  console.log("a");
+  var dirProb = Math.floor(Math.random() * 100);
+  var changeSizeProb = Math.random();
+  if(dirProb <= 41) {
+    kurs_dola -= 0.136391*Math.pow(changeSizeProb, 3.46092);
+  } else {
+    kurs_dola += 0.113587*Math.pow(changeSizeProb, 4.21578);
   }
 
-  document.getElementById('przeliczanie').value = kurs_dola.toFixed(2) + " ZŁ";
-  document.getElementById('przeliczanie').style.fontSize = "24px";
+  document.getElementById('convertedPrice').value = kurs_dola.toFixed(2) + " ZŁ";
+  document.getElementById('convertedPrice').style.fontSize = "24px";
 
 
-}
-
-setInterval(updateKurs, 2000);
-
-function przelicz() {
-  var waluta = document.getElementById('waluta').value;
-  var przeliczony = 0;
-  if (waluta === "ZŁ") {
-    // Przeliczamy z dolara na złote
-    przeliczony = liczba_dola * kurs_dola;
-    document.getElementById('przeliczanie').value = przeliczony.toFixed(2) + " ZŁ";
-  } else if (waluta === "USD") {
-    // Przeliczamy ze złotówek na dolary
-    przeliczony = saldo / kurs_dola;
-    document.getElementById('przeliczanie').value = przeliczony.toFixed(2) + " USD";
-  }
 }
 
 // Funkcja kupna kryptowaluty
@@ -44,9 +24,8 @@ function kup() {
     saldo -= kurs_dola;
     liczba_dola++;
     // Aktualizacja wartości na stronie
-    document.getElementById('wartosc_saldo').textContent = saldo.toFixed(2);
-    document.getElementById('ilosc_k').textContent = liczba_dola;
-    przelicz();  // Przeliczamy po każdej zmianie salda
+    document.getElementById('numSaldoPLN').textContent = saldo.toFixed(2);
+    document.getElementById('numSaldoUSD').textContent = liczba_dola;
   } else {
     alert("Za mało środków na koncie");
   }
@@ -58,9 +37,8 @@ function sprzedaj() {
     saldo += kurs_dola;
     liczba_dola--;
     // Aktualizacja wartości na stronie
-    document.getElementById('wartosc_saldo').textContent = saldo.toFixed(2);
-    document.getElementById('ilosc_k').textContent = liczba_dola;
-    przelicz();  // Przeliczamy po każdej zmianie salda
+    document.getElementById('numSaldoPLN').textContent = saldo.toFixed(2);
+    document.getElementById('numSaldoUSD').textContent = liczba_dola;
   } else {
     alert("Brak dolarów do sprzedaży");
   }
@@ -71,22 +49,20 @@ function kup_w() {
   var ile_moge_kupic = Math.floor(saldo / kurs_dola);
   saldo -= ile_moge_kupic * kurs_dola;
   liczba_dola += ile_moge_kupic;
-  document.getElementById('wartosc_saldo').textContent = saldo.toFixed(2);
-  document.getElementById('ilosc_k').textContent = liczba_dola;
-  przelicz();  // Przeliczamy po każdej zmianie salda
+  document.getElementById('numSaldoPLN').textContent = saldo.toFixed(2);
+  document.getElementById('numSaldoUSD').textContent = liczba_dola;
 }
 
 function sprzedaj_w() {
   saldo += liczba_dola * kurs_dola;
   liczba_dola = 0;
-  document.getElementById('wartosc_saldo').textContent = saldo.toFixed(2);
-  document.getElementById('ilosc_k').textContent = liczba_dola;
-  przelicz();  // Przeliczamy po każdej zmianie salda
+  document.getElementById('numSaldoPLN').textContent = saldo.toFixed(2);
+  document.getElementById('numSaldoUSD').textContent = liczba_dola;
 }
 
-// Funkcja wywołująca przeliczenie po zmianie waluty
-document.getElementById('waluta').addEventListener('change', przelicz);
+addEventListener('load', (e) => {
+  updateKurs();
+  setInterval(updateKurs, 2000);
+  setInterval(display, 2000);
+})
 
-// Na początku ustawiamy kurs kryptowaluty oraz przeliczenie
-updateKurs();
-przelicz();  // Początkowe przeliczenie na podstawie domyślnej waluty
