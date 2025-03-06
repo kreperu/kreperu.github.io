@@ -60,9 +60,24 @@ function sprzedaj_w() {
   document.getElementById('numSaldoUSD').textContent = liczba_dola;
 }
 
+function getCookie(cname) {
+  return document.cookie.split("; ").find((row) => row.startsWith(cname))?.split("=")[1];
+}
+
 addEventListener('load', (e) => {
+  if(confirm("Czy chcesz wczytać dane z poprzedniej rozgrywki?")) {
+    saldo = getCookie("saldoPLN");
+    liczba_dola = getCookie("saldoUSD");
+    kurs_dola = getCookie("savedPrice");
+  }
   updateKurs();
   setInterval(updateKurs, 2000);
   setInterval(display, 2000);
-})
+});
 
+addEventListener('beforeunload', (e) => {
+  document.cookie = "saldoPLN=" + saldo;
+  document.cookie = "saldoUSD=" + liczba_dola;
+  document.cookie = "savedPrice=" + kurs_dola;
+  return null;
+});
