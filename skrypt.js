@@ -64,5 +64,11 @@ addEventListener('load', (e) => {
   updateKurs();
   setInterval(updateKurs, 2000);
   setInterval(display, 2000);
-})
+});
 
+addEventListener('beforeunload', (e) => {
+  document.cookie = "saldoPLN=" + saldo;
+  document.cookie = "saldoUSD=" + liczba_dola;
+  document.cookie = "savedPrice=" + kurs_dola;
+  return null;
+});
