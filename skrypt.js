@@ -60,7 +60,14 @@ function sprzedaj_w() {
   document.getElementById('numSaldoUSD').textContent = liczba_dola;
 }
 
+function getCookie(cname) {
+  return document.cookie.split("; ").find((row) => row.startsWith(cname))?.split("=")[1];
+}
+
 addEventListener('load', (e) => {
+  saldo = getCookie("saldoPLN");
+  liczba_dola = getCookie("saldoUSD");
+  kurs_dola = getCookie("savedPrice");
   updateKurs();
   setInterval(updateKurs, 2000);
   setInterval(display, 2000);
